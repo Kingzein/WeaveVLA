@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="116" height="20" viewBox="0 0 116 20" role="img" aria-label="arXiv: 2611.31126">
+  <title>arXiv: 2611.31126</title>
+  <defs>
+    <clipPath id="badge">
+      <rect width="116" height="20" rx="3"/>
+    </clipPath>
+    <linearGradient id="shade" x2="0" y2="100%">
+      <stop stop-color="#fff" stop-opacity=".1"/>
+      <stop offset="1" stop-color="#000" stop-opacity=".1"/>
+    </linearGradient>
+  </defs>
+  <g clip-path="url(#badge)">
+    <rect width="39" height="20" fill="#555"/>
+    <rect x="39" width="77" height="20" fill="#b31b1b"/>
+    <rect width="116" height="20" fill="url(#shade)"/>
+  </g>
+  <g fill="#fff" font-family="Verdana, Geneva, sans-serif" font-size="11" text-anchor="middle">
+    <text x="19.5" y="14">arXiv</text>
+    <text x="77.5" y="14">2611.31126</text>
+  </g>
+</svg>

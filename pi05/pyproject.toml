@@ -1,0 +1,48 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "weavevla-pi05"
+version = "0.1.0"
+description = "WeaveVLA training and local evaluation for the OpenPI pi0.5 policy"
+requires-python = ">=3.10,<3.13"
+license = {file = "LICENSE"}
+dependencies = [
+    "augmax==0.4.1",
+    "beartype==0.19.0",
+    "chex==0.1.90",
+    "einops==0.8.1",
+    "flax==0.10.2",
+    "jax==0.5.3",
+    "jaxtyping==0.2.36",
+    "ml-dtypes==0.5.4",
+    "numpy==1.26.4",
+    "omegaconf==2.3.0",
+    "optax==0.2.8",
+    "orbax-checkpoint==0.11.13",
+    "pillow==12.0.0",
+    "pyarrow==23.0.0",
+    "safetensors==0.5.3",
+    "sentencepiece==0.2.2",
+    "tensorstore==0.1.78",
+    "torch==2.7.1",
+    "transformers==4.53.2",
+]
+
+[project.optional-dependencies]
+cuda = ["jax[cuda12]==0.5.3; sys_platform == 'linux'"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+"weavevla.geometry" = ["recipe.json"]
+"weavevla.language" = ["selected_config.json"]
+"weavevla_pi05.graph" = ["recipe.json"]
+
+[tool.uv]
+environments = [
+    "sys_platform == 'linux' and platform_machine == 'x86_64'",
+    "sys_platform == 'darwin' and platform_machine == 'arm64'",
+]

@@ -1,0 +1,16 @@
+__pycache__/
+*.py[cod]
+.venv/
+playground/
+vendor/
+checkpoints/
+ds_checkpoints/
+*.safetensors
+*.npz
+*.pt
+*.pth
+*.pkl
+/runs/
+/.uv-cache/
+/build/
+*.egg-info/

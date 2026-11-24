@@ -1,0 +1,4 @@
+jax-cuda12-pjrt==0.5.3
+jax-cuda12-plugin==0.5.3
+nvidia-cuda-nvcc-cu12==12.8.93
+nvidia-cudnn-cu12==9.8.0.87

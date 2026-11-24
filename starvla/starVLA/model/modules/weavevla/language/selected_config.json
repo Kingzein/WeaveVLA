@@ -1,0 +1,72 @@
+{
+  "extraction": {
+    "implementation": "extract.py::StructuredExtractor",
+    "spacy_model": "en_core_web_sm",
+    "spacy_model_version": "3.8.0",
+    "spacy_version": "3.8.16",
+    "disabled_pipeline_components": [
+      "ner"
+    ],
+    "input": "instruction text only",
+    "candidates": "noun_chunks whose root POS is NOUN or PROPN",
+    "phrase_normalization": "strip leading DET/both/all tokens, lowercase, trim whitespace",
+    "deduplication": "exact normalized phrase",
+    "region_heads": [
+      "top",
+      "front",
+      "back",
+      "left",
+      "right",
+      "middle",
+      "center",
+      "centre",
+      "side",
+      "bottom",
+      "layer",
+      "compartment",
+      "section",
+      "shelf",
+      "surface",
+      "area",
+      "position",
+      "location"
+    ],
+    "region_ownership": [
+      "explicit of complement",
+      "noun compound on spatial heads"
+    ],
+    "unresolved_spatial_relations": "retain relation/uncertain records instead of an independent entity",
+    "adjunct_rules": "generic dependency patterns in extract.py for manner, purpose, abstract expression and time/process",
+    "drawer_subregion_conversion": false,
+    "pronoun_resolution": false,
+    "llm_parser": false,
+    "reference_or_detector_labels_input": false
+  },
+  "matching": {
+    "model": "sentence-transformers/all-MiniLM-L6-v2",
+    "transformer_layers": 6,
+    "embedding_dimension": 384,
+    "max_input_tokens": 256,
+    "padding": "dynamic batch padding",
+    "truncation": true,
+    "pooling": "attention-mask-weighted mean over last hidden state",
+    "normalization": "L2",
+    "similarity": "cosine via normalized dot product",
+    "query": "complete extracted phrase",
+    "candidate_text": "unmodified canonical labels actually detected in the current frame",
+    "candidate_deduplication": "sorted unique class labels",
+    "selection": "forced Top1",
+    "display_top_k": 3,
+    "similarity_rejection_threshold": null,
+    "margin_rejection_threshold": null,
+    "one_to_one_assignment": false,
+    "head_word_fallback": false,
+    "context_reranking": false,
+    "class_definitions": false,
+    "inference_synonym_table": false,
+    "fine_tuning": false,
+    "label_vector_cache": true,
+    "mode": "eval + inference_mode",
+    "dtype": "float32"
+  }
+}

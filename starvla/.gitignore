@@ -1,0 +1,14 @@
+__pycache__/
+*.py[cod]
+.venv/
+/playground/*
+!/playground/README.md
+vendor/
+checkpoints/
+ds_checkpoints/
+*.safetensors
+*.npz
+*.pt
+*.pth
+*.pkl
+/runs/

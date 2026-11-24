@@ -1,0 +1,160 @@
+run_id: weavevla_libero
+run_root_dir: runs
+seed: 42
+is_debug: false
+version_id: '0.21'
+framework:
+  name: QwenGR00T
+  qwenvl:
+    base_vlm: null
+    attn_implementation: sdpa
+    vl_hidden_dim: 2048
+  action_model:
+    action_model_type: DiT-B
+    action_hidden_dim: 1024
+    hidden_size: 1024
+    add_pos_embed: true
+    max_seq_len: 1024
+    action_dim: 7
+    state_dim: 7
+    action_horizon: 8
+    repeated_diffusion_steps: 8
+    noise_beta_alpha: 1.5
+    noise_beta_beta: 1.0
+    noise_s: 0.999
+    num_timestep_buckets: 1000
+    num_inference_timesteps: 4
+    num_target_vision_tokens: 32
+    diffusion_model_cfg:
+      cross_attention_dim: 2560
+      dropout: 0.2
+      final_dropout: true
+      interleave_self_attention: true
+      norm_type: ada_norm
+      num_layers: 16
+      output_dim: 1024
+      positional_embeddings: null
+    future_action_window_size: 7
+    past_action_window_size: 0
+  graph:
+    enabled: true
+    hidden_dim: 256
+    num_heads: 8
+    num_queries: 16
+    pre_layers: 2
+    task_layers: 2
+    qformer_layers: 2
+    max_objects: 64
+    max_points: 512
+    lambda_geo: 0.1
+    use_visual_patches: true
+    depth_model: depth-anything/DA3METRIC-LARGE
+    workspace_image_index: 0
+    camera_intrinsics: null
+    intrinsics_size: null
+    detection_threshold: 0.3
+    min_points: 16
+    tracking_distance: 0.2
+    detector_checkpoint: null
+    evaluation_camera: default
+    perception_backend: cache
+    cache_recipe: null
+    gripper_position: tcp
+    geometry_input_dim: 4
+    geometry_loss_dim: 4
+    edge_status_input: false
+    node_gate: false
+    edge_memory_position: after_pre_before_qwen
+    edge_fusion: concat_mlp
+    edge_memory_ttl_steps: 64
+    surface_points: 128
+    prompt_local_k: 2
+    bptt: 1
+    version: weavevla_metric_geometry
+    model_contract_sha256: null
+    visual_pooling: mask_coverage_area_weighted_mean
+    visual_pooling_contract: null
+datasets:
+  vla_data:
+    dataset_py: lerobot_datasets
+    data_root_dir: null
+    data_mix: libero_all
+    action_type: delta_qpos
+    sequential_step_sampling: false
+    CoT_prompt: Your task is {instruction}. To identify the key objects for your task.
+      Locate their bounding boxes in [x1,y1,x2,y2] format.
+    per_device_batch_size: null
+    load_all_data_for_training: true
+    video_backend: torchvision_av
+    num_workers: 2
+    graph_cameras:
+      default:
+        workspace_image_index: 0
+        camera_intrinsics:
+        - - 309.01933598375615
+          - 0
+          - 127
+        - - 0
+          - 309.01933598375615
+          - 127
+        - - 0
+          - 0
+          - 1
+        intrinsics_size:
+        - 256
+        - 256
+    graph_cache_root: null
+trainer:
+  max_train_steps: 80000
+  num_warmup_steps: 5000
+  save_interval: 5000
+  eval_interval: 100
+  learning_rate:
+    base: 2.5e-05
+    qwen_vl_interface: 1.0e-05
+    action_model: 0.0001
+    graph_model: 0.0001
+  lr_scheduler_type: cosine_with_min_lr
+  scheduler_specific_kwargs:
+    min_lr: 1.0e-06
+  freeze_modules: graph_perception
+  loss_scale:
+    vla: 1.0
+    vlm: 0.0
+  max_grad_norm: 1.0
+  weight_decay: 0.0
+  logging_frequency: 10
+  gradient_clipping: 1.0
+  gradient_accumulation_steps: 1
+  gradient_checkpointing: true
+  optimizer:
+    name: AdamW
+    betas:
+    - 0.9
+    - 0.95
+    eps: 1.0e-08
+    weight_decay: 1.0e-08
+  pretrained_checkpoint: null
+  reload_modules: null
+  is_resume: false
+  gradient_sync: deepspeed_zero2_fp32_master
+  training_graph_trace: false
+  retain_all_model_checkpoints: true
+memory_training:
+  bptt: 1
+  windows_per_update: 1
+  initialization: raw Qwen3-VL-4B; new graph/action heads; no old checkpoint
+  node_gate: false
+  edge_memory_position: after_pre_before_qwen
+  edge_fusion: concat_mlp
+  synthetic_occlusion: false
+  optimizer_precision: fp32_master_and_moments
+  training_quality: verified_visible_scene
+  mask_repair_pending: false
+  random_offset: true
+  offset_range:
+  - 0
+  - 7
+  offset_refresh: episode visit boundary
+  offset_seed: 20261013
+  observation_manifest: null
