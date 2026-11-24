@@ -5,7 +5,7 @@
   <p>
     <a href="https://arxiv.org/abs/2611.31126"><img src="assets/badges/arxiv.svg" alt="arXiv:2611.31126"></a>
     <a href="https://kingzein.github.io/weave-vla/#overview"><img src="https://img.shields.io/badge/Project-Page-2ea44f" alt="Project page"></a>
-    <a href="https://huggingface.co/Kensag/WeaveVLA"><img src="https://img.shields.io/badge/Hugging_Face-Model-ffd21e" alt="Hugging Face model"></a>
+    <a href="https://huggingface.co/papers/2611.31126"><img src="https://img.shields.io/badge/Hugging_Face-Paper-ffd21e" alt="Hugging Face paper"></a>
   </p>
 
   <p>
